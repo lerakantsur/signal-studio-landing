@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 
-const row1 = [
+const images = [
   "/portfolio/hf_20260624_110441_d15dc873-cbfe-4972-843d-3a5ffd0600d5.jpg",
   "/portfolio/hf_20260624_110217_0f791b0a-7740-4081-af89-d500e6eb19e9.jpg",
   "/portfolio/hf_20260624_110101_25348ddd-5750-44da-8dbf-0bd3ef518588.jpg",
@@ -11,9 +11,6 @@ const row1 = [
   "/portfolio/hf_20260624_105805_a5c112df-f04a-4dca-9b8e-be173d689f5d.jpg",
   "/portfolio/hf_20260624_102623_772bc1c9-b1ea-4dac-a7a1-20ea27bdc07b.jpg",
   "/portfolio/Frame_31.jpg",
-];
-
-const row2 = [
   "/portfolio/hf_20260624_105641_f705ee3d-64dc-4274-882e-78009dc13163.jpg",
   "/portfolio/hf_20260624_105530_8cad9264-c6fa-4909-aa8c-7d3fef5538d0.jpg",
   "/portfolio/hf_20260624_105600_55fbdf80-6a85-4d9b-9188-8ab5f91357d0.jpg",
@@ -43,20 +40,10 @@ export default function Marquee() {
         </p>
       </motion.div>
 
-      <div className="marquee-wrap" style={{ marginBottom: 12 }}>
+      <div className="marquee-wrap">
         <div className="marquee-track">
-          {[...row1, ...row1].map((src, i) => (
-            <div className="m-card" key={`r1-${i}`}>
-              <img src={src} alt="" loading="lazy" />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="marquee-wrap reverse">
-        <div className="marquee-track">
-          {[...row2, ...row2].map((src, i) => (
-            <div className="m-card" key={`r2-${i}`}>
+          {[...images, ...images].map((src, i) => (
+            <div className="m-card" key={i}>
               <img src={src} alt="" loading="lazy" />
             </div>
           ))}
