@@ -1,5 +1,6 @@
 export async function POST(request: Request) {
   const body = await request.json();
+  console.log("Contact body:", JSON.stringify(body));
   const name = body?.name?.trim() || "Anonymous";
   const email = body?.email?.trim();
   const company = body?.company?.trim() || "";
