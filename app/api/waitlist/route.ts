@@ -61,15 +61,6 @@ export async function POST(request: Request) {
             Enter this code when you register on July 1st and your first month will be <strong style="color:#fff;">10% off</strong> — automatically applied at checkout.
           </p>
 
-          <!-- CTA Button -->
-          <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
-            <tr><td align="center">
-              <a href="https://signal-studio.app" style="display:inline-block;background:linear-gradient(135deg,#9B5CFF,#C084FC);color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 40px;border-radius:12px;letter-spacing:-0.2px;">
-                Visit Signal Studio →
-              </a>
-            </td></tr>
-          </table>
-
           <!-- Footer -->
           <div style="border-top:1px solid #2a2a2a;padding-top:24px;text-align:center;">
             <p style="font-size:13px;color:#666;margin:0 0 6px;">Questions? <a href="mailto:hello@signal-studio.app" style="color:#9B5CFF;text-decoration:none;font-weight:600;">hello@signal-studio.app</a></p>
