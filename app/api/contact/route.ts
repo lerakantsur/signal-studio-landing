@@ -1,11 +1,12 @@
 export async function POST(request: Request) {
   const body = await request.json();
-  const name = body?.name?.trim();
+  const name = body?.name?.trim() || "Anonymous";
   const email = body?.email?.trim();
+  const company = body?.company?.trim() || "";
   const message = body?.message?.trim();
 
-  if (!name || !email || !message) {
-    return Response.json({ error: "All fields are required." }, { status: 400 });
+  if (!email || !message) {
+    return Response.json({ error: "Email and message are required." }, { status: 400 });
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -16,10 +17,7 @@ export async function POST(request: Request) {
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (!botToken || !chatId) {
-    return Response.json(
-      { error: "Contact service is not configured." },
-      { status: 500 }
-    );
+    return Response.json({ error: "Contact service is not configured." }, { status: 500 });
   }
 
   const text = [
@@ -27,9 +25,10 @@ export async function POST(request: Request) {
     ``,
     `<b>Name:</b> ${name}`,
     `<b>Email:</b> ${email}`,
+    company ? `<b>Company:</b> ${company}` : null,
     `<b>Message:</b>`,
     message,
-  ].join("\n");
+  ].filter(Boolean).join("\n");
 
   const res = await fetch(
     `https://api.telegram.org/bot${botToken}/sendMessage`,
@@ -41,6 +40,8 @@ export async function POST(request: Request) {
   );
 
   if (!res.ok) {
+    const err = await res.json();
+    console.error("Telegram error:", err);
     return Response.json({ error: "Failed to send message." }, { status: 500 });
   }
 
