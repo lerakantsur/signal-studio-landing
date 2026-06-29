@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const LAUNCH_DATE = new Date("2026-07-01T09:00:00+02:00");
+const LAUNCH_DATE = new Date("2026-07-25T09:00:00+02:00");
 
 function getTimeLeft() {
   const diff = LAUNCH_DATE.getTime() - Date.now();
@@ -71,7 +71,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
         >
           <span className="dot" />
-          Launching July 1st · 9:00 AM CET
+          Launching July 25th · 9:00 AM CET
         </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
