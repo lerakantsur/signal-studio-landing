@@ -42,8 +42,8 @@ export default function BeFirst() {
           Be <span className="grad-w">first</span> in line.
         </h2>
         <p>
-          Waitlist closes when we hit capacity. Join now and lock in your early
-          access discount.
+          We&apos;re onboarding the first 100 brands personally. Join before
+          spots fill and lock in your early access discount.
         </p>
       </motion.div>
       <motion.div
