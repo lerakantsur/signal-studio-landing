@@ -31,7 +31,7 @@ const cards = [
   {
     icon: "💸",
     title: "10x cheaper than an agency",
-    text: "Agencies charge $500–2000 per banner set. Signal Studio delivers 100 banners starting at $259/month. Same quality, fraction of the cost.",
+    text: "Agencies charge $500–2000 per banner set. Signal Studio delivers 100 banners starting at $549/month. Same quality, fraction of the cost.",
   },
 ];
 
