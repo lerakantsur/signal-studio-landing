@@ -16,7 +16,7 @@ const cards = [
   {
     icon: "🛍️",
     title: "Static ads + marketplace creatives",
-    text: "Performance banners for Meta and Google. Product cards for Amazon and major international marketplaces. All formats, all sizes — everywhere except Russia.",
+    text: "Performance banners for Meta and Google. Product cards for Amazon and major international marketplaces. All formats, all sizes, 50+ countries.",
   },
   {
     icon: "✏️",
