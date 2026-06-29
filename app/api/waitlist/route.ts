@@ -1,22 +1,18 @@
-// Simple in-memory rate limiter (resets on cold start)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const limit = rateLimitMap.get(ip);
-  
   if (!limit || now > limit.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + 60_000 }); // 1 min window
+    rateLimitMap.set(ip, { count: 1, resetAt: now + 60_000 });
     return false;
   }
-  
-  if (limit.count >= 5) return true; // max 5 requests per minute per IP
-  
+  if (limit.count >= 5) return true;
   limit.count++;
   return false;
 }
 
 export async function POST(request: Request) {
-  // Rate limiting
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
   if (isRateLimited(ip)) {
     return Response.json({ error: "Too many requests. Please try again later." }, { status: 429 });
@@ -31,17 +27,15 @@ export async function POST(request: Request) {
     return Response.json({ error: "Please provide a valid email." }, { status: 400 });
   }
 
-  // Sanitize inputs
   const safeEmail = email.slice(0, 255);
   const safeName = name ? name.slice(0, 100) : null;
   const safeCompany = company ? company.slice(0, 100) : null;
 
   const apiKey = process.env.RESEND_API_KEY;
   const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
-  const supabaseUrl = process.env.SUPABASE_URL || "https://gdedpzgdfbcravrzpfga.supabase.co";
+  const supabaseUrl = process.env.SUPABASE_URL;
 
-  // Save to Supabase
-  if (supabaseKey) {
+  if (supabaseKey && supabaseUrl) {
     await fetch(`${supabaseUrl}/rest/v1/waitlist_emails`, {
       method: "POST",
       headers: {
@@ -54,7 +48,6 @@ export async function POST(request: Request) {
     });
   }
 
-  // Send email via Resend
   if (!apiKey) {
     return Response.json({ error: "Email service not configured." }, { status: 500 });
   }
@@ -69,8 +62,7 @@ export async function POST(request: Request) {
       from: "Signal Studio <hello@signal-studio.app>",
       to: safeEmail,
       subject: "🎉 You're on the waitlist — here's your exclusive discount",
-      html: `
-<!DOCTYPE html>
+      html: `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#0f0f0f;font-family:'Helvetica Neue',Arial,sans-serif;">
@@ -112,7 +104,6 @@ export async function POST(request: Request) {
   });
 
   if (!res.ok) {
-    console.error("Resend error:", await res.json());
     return Response.json({ error: "Failed to send email." }, { status: 500 });
   }
 
