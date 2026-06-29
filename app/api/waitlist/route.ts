@@ -76,7 +76,7 @@ export async function POST(request: Request) {
         <tr><td style="background:#1a1a1a;border-radius:0 0 20px 20px;padding:40px;">
           <h1 style="font-size:26px;font-weight:800;color:#ffffff;margin:0 0 12px;line-height:1.2;">You're in! 🎉</h1>
           <p style="font-size:15px;color:#a0a0a0;line-height:1.7;margin:0 0 32px;">
-            Welcome to the Signal Studio early access waitlist. We launch <strong style="color:#fff;">July 1st at 9:00 AM CET</strong> — and you'll be among the first to get in.
+            Welcome to the Signal Studio early access waitlist. We launch <strong style="color:#fff;">July 25th at 9:00 AM CET</strong> — and you'll be among the first to get in.
           </p>
           <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
             <tr><td style="background:#2a1a4a;border:1px solid #9B5CFF40;border-radius:16px;padding:28px;text-align:center;">
@@ -88,7 +88,7 @@ export async function POST(request: Request) {
             </td></tr>
           </table>
           <p style="font-size:14px;color:#a0a0a0;line-height:1.7;margin:0 0 32px;">
-            Enter this code when you register on July 1st and your first month will be <strong style="color:#fff;">10% off</strong> — automatically applied at checkout.
+            Enter this code when you register on July 25th and your first month will be <strong style="color:#fff;">10% off</strong> — automatically applied at checkout.
           </p>
           <div style="border-top:1px solid #2a2a2a;padding-top:24px;text-align:center;">
             <p style="font-size:13px;color:#666;margin:0 0 6px;">Questions? <a href="mailto:hello@signal-studio.app" style="color:#9B5CFF;text-decoration:none;font-weight:600;">hello@signal-studio.app</a></p>
