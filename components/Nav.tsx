@@ -52,7 +52,6 @@ export default function Nav() {
         </button>
       </nav>
 
-      {/* OVERLAY */}
       {open && (
         <div
           onClick={(e) => { if (e.target === e.currentTarget) { setOpen(false); setSubmitted(false); } }}
@@ -67,7 +66,6 @@ export default function Nav() {
             maxWidth: 480, width: "100%", position: "relative",
             boxShadow: "0 24px 80px rgba(0,0,0,0.18)",
           }}>
-            {/* Close button */}
             <button
               onClick={() => { setOpen(false); setSubmitted(false); }}
               style={{
@@ -86,7 +84,7 @@ export default function Nav() {
                   Join the waitlist
                 </h2>
                 <p style={{ fontSize: 14, color: "#6B6B80", marginBottom: 28, lineHeight: 1.6 }}>
-                  We launch July 1st. Sign up now and get <strong style={{ color: "#9B5CFF" }}>10% off your first month</strong> — code sent to your inbox.
+                  We launch July 25th. Sign up now and get <strong style={{ color: "#9B5CFF" }}>10% off your first month</strong> — code sent to your inbox.
                 </p>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -146,7 +144,7 @@ export default function Nav() {
             ) : (
               <div style={{ textAlign: "center", padding: "20px 0" }}>
                 <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
-                <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 10 }}>You're in!</h2>
+                <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 10 }}>You&apos;re in!</h2>
                 <p style={{ fontSize: 15, color: "#6B6B80", lineHeight: 1.7 }}>
                   Check your inbox — your exclusive discount code <strong style={{ color: "#9B5CFF" }}>EARLY10</strong> is on its way.
                 </p>
