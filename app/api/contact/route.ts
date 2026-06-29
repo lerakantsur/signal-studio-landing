@@ -1,6 +1,5 @@
 export async function POST(request: Request) {
   const body = await request.json();
-  console.log("Contact body:", JSON.stringify(body));
   const name = body?.name?.trim() || "Anonymous";
   const email = body?.email?.trim();
   const company = body?.company?.trim() || "";
@@ -14,6 +13,12 @@ export async function POST(request: Request) {
     return Response.json({ error: "Please provide a valid email." }, { status: 400 });
   }
 
+  // Sanitize inputs
+  const safeName = name.slice(0, 100);
+  const safeEmail = email.slice(0, 255);
+  const safeCompany = company.slice(0, 100);
+  const safeMessage = message.slice(0, 2000);
+
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
@@ -24,11 +29,11 @@ export async function POST(request: Request) {
   const text = [
     `📬 <b>New contact form message</b>`,
     ``,
-    `<b>Name:</b> ${name}`,
-    `<b>Email:</b> ${email}`,
-    company ? `<b>Company:</b> ${company}` : null,
+    `<b>Name:</b> ${safeName}`,
+    `<b>Email:</b> ${safeEmail}`,
+    safeCompany ? `<b>Company:</b> ${safeCompany}` : null,
     `<b>Message:</b>`,
-    message,
+    safeMessage,
   ].filter(Boolean).join("\n");
 
   const res = await fetch(
@@ -41,8 +46,6 @@ export async function POST(request: Request) {
   );
 
   if (!res.ok) {
-    const err = await res.json();
-    console.error("Telegram error:", err);
     return Response.json({ error: "Failed to send message." }, { status: 500 });
   }
 
