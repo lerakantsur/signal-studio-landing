@@ -18,7 +18,8 @@ function getTimeLeft() {
 }
 
 export default function Hero() {
-  const [time, setTime] = useState(getTimeLeft);
+  const [mounted, setMounted] = useState(false);
+  const [time, setTime] = useState({ d: "00", h: "00", m: "00", s: "00" });
   const [submitted, setSubmitted] = useState(false);
   const [count, setCount] = useState(47);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -34,6 +35,8 @@ export default function Hero() {
   const orb2X = useTransform(scrollYProgress, [0, 1], [0, -30]);
 
   useEffect(() => {
+    setMounted(true);
+    setTime(getTimeLeft());
     const id = setInterval(() => setTime(getTimeLeft()), 1000);
     return () => clearInterval(id);
   }, []);
@@ -108,22 +111,22 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <div className="cd-block">
-            <div className="cd-num">{time.d}</div>
+            <div className="cd-num" suppressHydrationWarning>{mounted ? time.d : "00"}</div>
             <div className="cd-lbl">Days</div>
           </div>
           <div className="cd-sep">:</div>
           <div className="cd-block">
-            <div className="cd-num">{time.h}</div>
+            <div className="cd-num" suppressHydrationWarning>{mounted ? time.h : "00"}</div>
             <div className="cd-lbl">Hours</div>
           </div>
           <div className="cd-sep">:</div>
           <div className="cd-block">
-            <div className="cd-num">{time.m}</div>
+            <div className="cd-num" suppressHydrationWarning>{mounted ? time.m : "00"}</div>
             <div className="cd-lbl">Min</div>
           </div>
           <div className="cd-sep">:</div>
           <div className="cd-block">
-            <div className="cd-num">{time.s}</div>
+            <div className="cd-num" suppressHydrationWarning>{mounted ? time.s : "00"}</div>
             <div className="cd-lbl">Sec</div>
           </div>
         </motion.div>
