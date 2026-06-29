@@ -1,6 +1,5 @@
 // Simple in-memory rate limiter (resets on cold start)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const limit = rateLimitMap.get(ip);
